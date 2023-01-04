@@ -1,0 +1,59 @@
+<main>
+  <div class="container">
+  <div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+<h1>Editing Book</h1>
+
+<div>
+<% if @book.errors.any? %>
+  <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+  <ul>
+   <% @book.errors.full_messages.each do |message| %>
+   <li><%= message %></li>
+   <% end %>
+  </ul>
+<% end %>
+</div>
+
+<!--投稿済みのデータを編集するので、保存されているデータが必要-->
+<!--form_withを利用するとインスタンス変数を渡すだけで、インスタンス変数内のモデルを解読して、投稿したタイトルと内容を代入してくれる-->
+<%= form_with model: @book do |f| %>
+ <div class="form-group">
+  <div><p>Title</p></div>
+  <div><%= f.text_field :title %></div>
+ </div>
+
+  <div class="form-group">
+  <p>Opinion</p>
+  <div><%= f.text_area :body %></div>
+  </div>
+
+  <div class="form-group">
+  <br><%= f.submit 'Update Book' %>
+  </div>
+
+</form>
+  <br>
+  <!--booksのshowページに移動-->
+  <!--booksのindexページに移動-->
+  <%= link_to 'Show' , book_path(@book.id) %> | <%= link_to 'Back' , books_path %>
+<% end %>
+</div>
+</div>
+</div>
+</main>
+
+<footer>
+  <div class="container mt-5">
+  <div class="row">
+  <div class="mx-auto">
+    <p>CopyRight Infratop.inc</p>
+	</div>
+  </div>
+  </div>
+</footer>
+
+
+
+
+
